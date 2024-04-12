@@ -20,18 +20,18 @@ namespace Ilusalong.Controllers
             var toode = _context.Toode.Include(a => a.Kategooria).ToList(); //include чтобы также выводило и название категории
             return toode;
         }
+
         [HttpPost] //добавление
         public IActionResult PostProduct([FromBody] Tooted tooted)
         {
-            // Проверяем, существует ли категория с заданным идентификатором
+            //Проверяем, существует ли категория с введеным ид
             var existingKategooria = _context.Kategooria.Find(tooted.KategooriaID);
             if (existingKategooria == null)
             {
-                // Если категория не найдена, возвращаем сообщение об ошибке
+                //Если категория не найдена, то пишет сообщение об ошибке
                 return BadRequest("Määratud ID-ga kategooriat pole olemas.");
             }
 
-            // Переопределяем внешний ключ для категории, если она указана
             tooted.Kategooria = existingKategooria;
 
             //добавление товара
