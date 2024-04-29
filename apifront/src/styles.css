@@ -1,0 +1,196 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    background-color: #ffffff;
+  }
+  
+  .container {
+    margin: 1rem;
+    text-align: center;
+  }
+  .nav {
+    background-color: #5ab4a1;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+  
+  .text-container {
+    font-size: 40px;
+    text-align: center;
+    font-family: Roboto;
+    color: #370152;
+    margin-top: 50px;
+  }
+
+  .site-title {
+    font-size: 2rem;
+    text-align: center;
+    font-family: Roboto;
+  }
+  
+  .nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .nav a {
+    color: inherit;
+    text-decoration: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: .25rem;
+    text-align: center;
+    font-size: 30px;
+    font-family: Roboto;
+  }
+  
+  .nav li.active {
+    background-color: #20705f;
+    text-align: center;
+    font-size: 30px;
+    font-family: Roboto;
+  }
+  
+  .nav li:hover {
+    background-color: #0c4d3e;
+    text-align: center;
+    font-size: 30px;
+    font-family: Roboto;
+  }
+
+  .slide-container {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .each-slide-effect > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    height: 500px;
+    width: 100%;
+  }
+  
+  .each-slide-effect span {
+    padding: 20px;
+    font-size: 20px;
+    text-align: center;
+    background-color: rgba(90, 180, 161, 0.5);
+    color: #370152;
+    font-size: 30px;
+    font-family: Roboto;
+    font-weight: bold;
+  }
+
+  .table-container {
+    width: 60%;
+    margin: 50px auto 0;
+  }
+
+  .td-button {
+    padding: 50px; 
+  }
+
+  .image-button {
+    width: 300px;
+    height: 300px;
+    background-image: url('./pages/img/pilt4.png');
+    background-size: cover;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+  }
+
+  .image-button2 {
+    width: 300px;
+    height: 300px;
+    background-image: url('./pages/img/pilt5.png');
+    background-size: cover;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+  }
+
+  .image-button3 {
+    width: 300px;
+    height: 300px;
+    background-image: url('./pages/img/pilt6.png');
+    background-size: cover;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+  }
+
+  .service-name {
+    font-size: 30px;
+    font-weight: bold;
+    color: #370152;
+  }
+
+  .table-tooted {
+    margin-top: 20px; /* Отступ сверху */
+    font-weight: bold; /* Делаем текст жирным */
+    color: #370152; /* Изменяем цвет текста */
+    font-size: 20px;
+  }
+  
+  #Tooted {
+    width: 100%; /* Ширина таблицы на 100% */
+    border-collapse: collapse; /* Объединение границ ячеек */
+  }
+  
+  #Tooted th,
+  #Tooted td {
+    border: 1px solid #ccc; /* Граница ячеек таблицы */
+    padding: 10px; /* Отступ внутри ячеек */
+  }
+  
+  #Tooted th {
+    background-color: #d6f3dd; /* Светло-зеленый цвет фона заголовков */
+    color: #333; /* Цвет текста заголовков */
+  }
+  
+  #Tooted tbody tr:nth-child(even) {
+    background-color: #f6e2ff9a; /* Светло-фиолетовый цвет фона четных строк */
+  }
+  
+  #Tooted tbody tr:nth-child(odd) {
+    background-color: #f6e2ff9a; /* Светло-сиреневый цвет фона нечетных строк */
+  }
+  
+  #Tooted tbody tr:hover {
+    background-color: #d1b5dfbe; /* Цвет фона при наведении на строку */
+  }
+
+  .reg-button {
+    background-color: #588b64; /* Зеленый цвет фона */
+    border: none; /* Убираем границу */
+    font-weight: bold;
+    color: white; /* Белый цвет текста */
+    padding: 15px 30px; /* Отступы внутри кнопки */
+    text-align: center; /* Выравниваем текст по центру */
+    text-decoration: none; /* Убираем подчеркивание */
+    display: inline-block; /* Устанавливаем блочный элемент */
+    font-size: 16px; /* Размер шрифта */
+    cursor: pointer; /* Устанавливаем указатель при наведении */
+    border-radius: 15px; /* Закругляем углы */
+    transition-duration: 0.4s; /* Длительность анимации при наведении */
+  }
+  
+  .reg-button:hover {
+    background-color: #7cb389; /* Зеленый цвет фона при наведении */
+    color: white; /* Белый цвет текста при наведении */
+  }
+  
