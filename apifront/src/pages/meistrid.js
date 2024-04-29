@@ -1,35 +1,43 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function Meistrid() {
-  const [Kategooriad, setKategooriad] = useState([]);
+const Meistrid = () => {
+  const [masters, setMasters] = useState([]);
 
   useEffect(() => {
-    fetch("https://localhost:7057/Kategooriad")
-      .then(res => res.json())
-      .then(json => setKategooriad(json));
+    const fetchMasters = async () => {
+      try {
+        const response = await axios.get('https://localhost:7057/api/Kasutajad/masters');
+        setMasters(response.data);
+      } catch (error) {
+        console.error('Failed to fetch masters:', error);
+      }
+    };
+
+    fetchMasters();
   }, []);
 
   return (
-    <div className="Meistrid">
-      <h2>Категории</h2>
-      <table id="Kategooriad">
+    <div>
+      <h2>Мастера</h2>
+      <table id="Meistrid">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Название</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
           </tr>
         </thead>
         <tbody>
-          {Kategooriad.map((Kategooria, index) => (
-            <tr key={index}>
-              <td>{Kategooria.kategooriaID}</td>
-              <td>{Kategooria.kat_nimetus}</td>
+          {masters.map(master => (
+            <tr key={master.kasutajadID}>
+              <td>{master.kas_nimi}</td>
+              <td>{master.kas_pernimi}</td> 
             </tr>
           ))}
         </tbody>
       </table>
     </div>
   );
-}
+};
 
 export default Meistrid;

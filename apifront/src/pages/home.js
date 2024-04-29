@@ -37,21 +37,23 @@ export default function Home() {
         </div>
       </Slide>
     </div>
-    <div class="text-container">
+    <div className="text-container">
         <strong>Наши услуги ༼ つ ◕_◕ ༽つ</strong>
     </div>
-    <div class="table-container">
+    <div className="table-container">
       <table>
-      <tr>
-        <td class="td-button"><button class="image-button"></button></td>
-        <td class="td-button"><button class="image-button2"></button></td>
-        <td class="td-button"><button class="image-button3"></button></td>
-      </tr>
-      <tr>
-        <td><span class="service-name">Маникюр и педикюр</span></td>
-        <td><span class="service-name">Парикмахерские услуги</span></td>
-        <td><span class="service-name">Брови и ресницы</span></td>
-      </tr>
+        <tbody>
+          <tr>
+            <td className="td-button"><button className="image-button"></button></td>
+            <td className="td-button"><button className="image-button2"></button></td>
+            <td className="td-button"><button className="image-button3"></button></td>
+          </tr>
+          <tr>
+            <td><span className="service-name">Маникюр и педикюр</span></td>
+            <td><span className="service-name">Парикмахерские услуги</span></td>
+            <td><span className="service-name">Брови и ресницы</span></td>
+          </tr>
+        </tbody>
       </table>
     </div>
     </>
