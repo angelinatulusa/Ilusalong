@@ -139,6 +139,7 @@
     color: #370152;
   }
 
+  /* цсс для таблицы с услугами/товарами */
   .table-tooted {
     margin-top: 20px; /* Отступ сверху */
     font-weight: bold; /* Делаем текст жирным */
@@ -194,3 +195,39 @@
     color: white; /* Белый цвет текста при наведении */
   }
   
+  /* цсс для таблицы с мастерами */
+
+  .table-meistrid {
+    margin-top: 20px; /* Отступ сверху */
+    font-weight: bold; /* Делаем текст жирным */
+    color: #370152; /* Изменяем цвет текста */
+    font-size: 20px;
+  }
+  
+  #Meistrid {
+    width: 100%; /* Ширина таблицы на 100% */
+    border-collapse: collapse; /* Объединение границ ячеек */
+  }
+  
+  #Meistrid th,
+  #Meistrid td {
+    border: 1px solid #ccc; /* Граница ячеек таблицы */
+    padding: 10px; /* Отступ внутри ячеек */
+  }
+  
+  #Meistrid th {
+    background-color: #d6f3dd; /* Светло-зеленый цвет фона заголовков */
+    color: #333; /* Цвет текста заголовков */
+  }
+  
+  #Meistrid tbody tr:nth-child(even) {
+    background-color: #f6e2ff9a; /* Светло-фиолетовый цвет фона четных строк */
+  }
+  
+  #Meistrid tbody tr:nth-child(odd) {
+    background-color: #f6e2ff9a; /* Светло-сиреневый цвет фона нечетных строк */
+  }
+  
+  #Meistrid tbody tr:hover {
+    background-color: #d1b5dfbe; /* Цвет фона при наведении на строку */
+  }

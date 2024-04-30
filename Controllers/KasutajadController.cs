@@ -78,5 +78,6 @@ namespace Ilusalong.Controllers
             var masters = _context.Kasutajad.Where(k => k.roll == "master").ToList();
             return masters;
         }
+
     }
 }

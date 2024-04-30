@@ -18,7 +18,7 @@ const Meistrid = () => {
   }, []);
 
   return (
-    <div>
+    <div className="table-meistrid">
       <h2>Мастера</h2>
       <table id="Meistrid">
         <thead>
