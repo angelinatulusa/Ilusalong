@@ -9,6 +9,8 @@ namespace Ilusalong.Data
         public DbSet<Tooted> Toode { get; set; }
         public DbSet<Kategooriad> Kategooria { get; set; }
         public DbSet<Kasutajad> Kasutajad { get; set; }
+        public DbSet<Protseduurid> Protseduurid { get; set; }
+        public DbSet<Meistrid> Meistrid { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

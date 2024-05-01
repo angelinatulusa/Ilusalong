@@ -5,6 +5,7 @@ import pilt3 from './img/pilt3.png';
 import React from 'react';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
+import Map from './map';
 
 export default function Home() {
     const images = [
@@ -55,6 +56,13 @@ export default function Home() {
           </tr>
         </tbody>
       </table>
+    </div>
+    <div>
+      <h1>Местонахождение салона</h1>
+      <Map />
+    </div>
+    <div>
+      <h3>Наш адрес: Vesivärava 53</h3>
     </div>
     </>
   }

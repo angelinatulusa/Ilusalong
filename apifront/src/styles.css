@@ -29,6 +29,22 @@
     margin-top: 50px;
   }
 
+  h1 {
+    font-size: 40px;
+    text-align: center;
+    font-family: Roboto;
+    color: #370152;
+    margin-top: 50px;
+  }
+
+  h3 {
+    font-size: 25px;
+    text-align: center;
+    font-family: Roboto;
+    color: #370152;
+    margin-top: 50px;
+  }
+
   .site-title {
     font-size: 2rem;
     text-align: center;
@@ -230,4 +246,9 @@
   
   #Meistrid tbody tr:hover {
     background-color: #d1b5dfbe; /* Цвет фона при наведении на строку */
+  }
+
+  #map {
+    width: 400px; /* Ширина карты на всю ширину родительского элемента */
+    height: 300px; /* Высота карты, можете настроить по вашему желанию */
   }

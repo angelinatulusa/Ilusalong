@@ -9,6 +9,7 @@ export default function Navbar() {
       <ul>
       <CustomLink to="/tooted">Teenused</CustomLink>
         <CustomLink to="/meistrid">Meistrid</CustomLink>
+        <CustomLink to="/broneering">Broneering</CustomLink>
         <CustomLink to="/signin">Sing in</CustomLink>
       </ul>
     </nav>

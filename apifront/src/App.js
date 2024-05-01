@@ -3,6 +3,7 @@ import Home from "./pages/home"
 import Meistrid from "./pages/meistrid"
 import Tooted from "./pages/tooted"
 import SignIn from "./pages/signin"
+import Broneering from "./pages/broneering"
 import { Route, Routes } from "react-router-dom"
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/tooted" element={<Tooted />} />
           <Route path="/meistrid" element={<Meistrid />} />
+          <Route path="/broneering" element={<Broneering />} />
           <Route path="/signin" element={<SignIn />} />
         </Routes>
       </div>
