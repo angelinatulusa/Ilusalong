@@ -186,7 +186,7 @@
   #Tooted tbody tr:nth-child(odd) {
     background-color: #f6e2ff9a; /* Светло-сиреневый цвет фона нечетных строк */
   }
-  
+  ц
   #Tooted tbody tr:hover {
     background-color: #d1b5dfbe; /* Цвет фона при наведении на строку */
   }

@@ -1,22 +1,36 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/login', { username, lastName, password });
-      // Здесь вы можете обработать успешный вход пользователя, например, перенаправить его на другую страницу
-      console.log('User logged in:', response.data);
+      const response = await axios.post('https://localhost:7057/api/Login', { username, lastName, password });
+      if (response.status === 200) {
+        // Если ответ успешный, перенаправляем пользователя на страницу с товарами
+        navigate('/Tooted');
+      } else {
+        // Если ответ не успешный, устанавливаем ошибку
+        setError('Failed to log in. Please check your credentials.');
+      }
     } catch (error) {
+      // Если произошла ошибка при отправке запроса, устанавливаем ошибку
       setError('Failed to log in. Please check your credentials.');
       console.error('Login error:', error);
     }
+  };
+
+  const handleLogout = () => {
+    // Реализация выхода: например, удаление токена аутентификации
+    // После завершения сессии на сервере, перенаправляем пользователя на страницу входа
+    navigate('/');
   };
 
   return (
@@ -55,6 +69,7 @@ const Login = () => {
           />
         </div>
         <button type="submit">Login</button>
+        <button type="button" onClick={handleLogout}>Logout</button>
       </form>
     </div>
   );

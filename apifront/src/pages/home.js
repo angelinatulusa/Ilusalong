@@ -62,7 +62,7 @@ export default function Home() {
       <Map />
     </div>
     <div>
-      <h3>Наш адрес: Vesivärava 53</h3>
+      <h3>Наш адрес: Vesivärava 53c</h3>
     </div>
     </>
   }
