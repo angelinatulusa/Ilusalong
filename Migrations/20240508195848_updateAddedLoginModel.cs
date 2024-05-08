@@ -5,7 +5,7 @@
 namespace Ilusalong.Migrations
 {
     /// <inheritdoc />
-    public partial class AddedLoginModel : Migration
+    public partial class updateAddedLoginModel : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

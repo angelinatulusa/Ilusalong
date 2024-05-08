@@ -4,6 +4,7 @@ import Meistrid from "./pages/meistrid"
 import Tooted from "./pages/tooted"
 import SignIn from "./pages/signin"
 import Broneering from "./pages/broneering"
+import ToodeAdmin from "./pages/tootedAdmin"
 import { Route, Routes } from "react-router-dom"
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/meistrid" element={<Meistrid />} />
           <Route path="/broneering" element={<Broneering />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/tootedAdmin" element={<ToodeAdmin/>} />
         </Routes>
       </div>
     </>

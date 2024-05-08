@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Импортируем useNavigate из react-router-dom
 
 const Login = () => {
   const [username, setUsername] = useState('');
-  const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -12,10 +11,10 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://localhost:7057/api/Login', { username, lastName, password });
+      const response = await axios.post('https://localhost:7057/api/Login', { username , password });
       if (response.status === 200) {
         // Если ответ успешный, перенаправляем пользователя на страницу с товарами
-        navigate('/Tooted');
+        navigate('/tootedAdmin'); // Используем navigate для перехода на страницу tootedAdmin
       } else {
         // Если ответ не успешный, устанавливаем ошибку
         setError('Failed to log in. Please check your credentials.');
@@ -27,11 +26,6 @@ const Login = () => {
     }
   };
 
-  const handleLogout = () => {
-    // Реализация выхода: например, удаление токена аутентификации
-    // После завершения сессии на сервере, перенаправляем пользователя на страницу входа
-    navigate('/');
-  };
 
   return (
     <div>
@@ -39,7 +33,7 @@ const Login = () => {
       {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">Eesnimi: </label>
+          <label htmlFor="username">Username:</label>
           <input
             type="text"
             id="username"
@@ -49,17 +43,7 @@ const Login = () => {
           />
         </div>
         <div>
-          <label htmlFor="lastName">Perekonnanimi: </label>
-          <input
-            type="text"
-            id="lastName"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Salasõna: </label>
+          <label htmlFor="password">Password:</label>
           <input
             type="password"
             id="password"
@@ -69,7 +53,6 @@ const Login = () => {
           />
         </div>
         <button type="submit">Login</button>
-        <button type="button" onClick={handleLogout}>Logout</button>
       </form>
     </div>
   );

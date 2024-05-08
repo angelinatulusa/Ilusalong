@@ -2,6 +2,9 @@
 using Ilusalong.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Ilusalong.Controllers
 {
@@ -10,55 +13,53 @@ namespace Ilusalong.Controllers
     public class TootedController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+
         public TootedController(ApplicationDbContext context)
         {
             _context = context;
         }
-        [HttpGet] //вывод на экран
+
+        [HttpGet]
         public List<Tooted> GetToode()
         {
-            var toode = _context.Toode.Include(a => a.Kategooria).ToList(); //include чтобы также выводило и название категории
+            var toode = _context.Toode.ToList();
             return toode;
         }
 
-        [HttpPost] //добавление
-        public IActionResult PostProduct([FromBody] Tooted tooted)
+        [HttpPost("add")]
+        public ActionResult<Tooted> PostProduct([FromBody] Tooted tooted)
         {
-            //Проверяем, существует ли категория с введеным ид
-            var existingKategooria = _context.Kategooria.Find(tooted.KategooriaID);
-            if (existingKategooria == null)
+            try
             {
-                //Если категория не найдена, то пишет сообщение об ошибке
-                return BadRequest("Määratud ID-ga kategooriat pole olemas.");
+                _context.Toode.Add(tooted);
+                _context.SaveChanges();
+                return Ok(tooted);
             }
-
-            tooted.Kategooria = existingKategooria;
-
-            //добавление товара
-            _context.Toode.Add(tooted);
-            _context.SaveChanges();
-
-            //список товаров с их категориями
-            return Ok(_context.Toode.Include(a => a.Kategooria).ToList());
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Произошла ошибка при добавлении товара: {ex.Message}");
+            }
         }
-        [HttpDelete("{id}")] //удаление
-        public List<Tooted> DeleteToode(int id)
+
+        [HttpDelete("{id}")]
+        public ActionResult<List<Tooted>> DeleteToode(int id)
         {
             var cat = _context.Toode.Find(id);
 
             if (cat == null)
             {
-                return _context.Toode.ToList();
+                return NotFound("Määratud ID-ga toodet pole olemas.");
             }
 
             _context.Toode.Remove(cat);
             _context.SaveChanges();
-            return _context.Toode.Include(a => a.Kategooria).ToList();
+            return Ok(_context.Toode.ToList());
         }
-        [HttpGet("{id}")] //вывод на экран через Ид
-        public ActionResult<Tooted> getToode(int id)
+
+        [HttpGet("{id}")]
+        public ActionResult<Tooted> GetToode(int id)
         {
-            var cat = _context.Toode.Include(a => a.Kategooria).FirstOrDefault(t => t.ToodeID == id);
+            var cat = _context.Toode.FirstOrDefault(t => t.ToodeID == id);
 
             if (cat == null)
             {
@@ -67,8 +68,9 @@ namespace Ilusalong.Controllers
 
             return cat;
         }
-        [HttpPut("{id}")]//изменение
-        public ActionResult<List<Tooted>> PutToode(int id, [FromBody] Tooted updatedToode)
+
+        [HttpPut("{id}")]
+        public ActionResult<Tooted> PutToode(int id, [FromBody] Tooted updatedToode)
         {
             var cat = _context.Toode.Find(id);
 
@@ -82,7 +84,7 @@ namespace Ilusalong.Controllers
             _context.Toode.Update(cat);
             _context.SaveChanges();
 
-            return Ok(_context.Toode.Include(a => a.Kategooria).ToList());
+            return Ok(cat);
         }
     }
 }
