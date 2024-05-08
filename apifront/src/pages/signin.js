@@ -39,7 +39,7 @@ const Login = () => {
       {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="username">Eesnimi: </label>
           <input
             type="text"
             id="username"
@@ -49,7 +49,7 @@ const Login = () => {
           />
         </div>
         <div>
-          <label htmlFor="lastName">Last Name:</label>
+          <label htmlFor="lastName">Perekonnanimi: </label>
           <input
             type="text"
             id="lastName"
@@ -59,7 +59,7 @@ const Login = () => {
           />
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">Salasõna: </label>
           <input
             type="password"
             id="password"

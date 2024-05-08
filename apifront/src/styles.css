@@ -252,3 +252,64 @@
     width: 400px; /* Ширина карты на всю ширину родительского элемента */
     height: 300px; /* Высота карты, можете настроить по вашему желанию */
   }
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 0 auto;
+  }
+  
+  /* Стили для поля ввода */
+  input, select {
+    width: calc(100% - 22px); /* Вычисляем ширину так, чтобы все элементы были одинаковой ширины */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  /* Стили для кнопок */
+  button {
+    width: calc(100% - 22px);
+    padding: 7px 10px;
+    border: none;
+    border-radius: 7px;
+    border-color: #327554;;
+    background-color: #63b68c;
+    color: whitesmoke;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px auto 0; /* Выравнивание по центру по вертикали и автоматическое выравнивание по горизонтали */
+    display: block; /* Чтобы кнопка занимала всю доступную ширину */
+    font-weight: bold;
+  }
+  
+  button:hover {
+    background-color: #447e61;
+  }
+  
+  /* Стили для ошибки */
+  p {
+    color: red;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 120%;
+  }
+  
+  /* Стили для заголовка */
+  h2 {
+    text-align: center;
+  }
+
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  /* Стили для опций внутри выпадающего списка */
+  option {
+    font-size: 16px;
+  }

@@ -20,16 +20,15 @@ namespace Ilusalong.Controllers
         [HttpPost]
         public IActionResult Login(LoginModel model)
         {
-            var user = _context.Kasutajad.FirstOrDefault(k => k.kas_nimi == model.Username && k.kas_pernimi == model.LastName && k.kas_parool == model.Password);
+            var user = _context.Kasutajad.FirstOrDefault(k => k.kas_nimi == model.Username && 
+            k.kas_pernimi == model.LastName && k.kas_parool == model.Password);
 
             if (user == null)
             {
-                return NotFound(); // Пользователь не найден в базе данных
+                return NotFound(); 
             }
 
-            // Вход выполнен успешно, здесь можно выполнить дополнительные действия, например, установить сеанс пользователя
-
-            return Ok(user); // Возвращаем пользователя в случае успешного входа
+            return Ok(user);
         }
     }
 }

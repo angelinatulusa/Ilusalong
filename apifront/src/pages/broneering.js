@@ -81,7 +81,7 @@ const Broneering = () => {
   <h2>Запись на процедуру</h2>
   <form onSubmit={handleSubmit} className="form-row">
     <div>
-      <label htmlFor="toode">Выберите товар:</label>
+      <label htmlFor="toode">Выберите товар: </label>
       <select id="toode" onChange={(e) => setSelectedToode(e.target.value)}>
         <option value="">Выберите товар</option>
         {Tooted.map((toode, index) => (
@@ -92,7 +92,7 @@ const Broneering = () => {
       </select>
     </div>
     <div>
-      <label htmlFor="master">Выберите мастера:</label>
+      <label htmlFor="master">Выберите мастера: </label>
       <select id="master" onChange={(e) => setSelectedMaster(e.target.value)} value={selectedMaster} required>
         <option value="">Выберите мастера</option>
         {Meistrid.map((meister, index) => (
@@ -103,19 +103,19 @@ const Broneering = () => {
       </select>
     </div>
     <div>
-      <label htmlFor="name">Ваше имя:</label>
+      <label htmlFor="name">Ваше имя: </label>
       <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
     </div>
     <div>
-      <label htmlFor="email">Ваш Email:</label>
+      <label htmlFor="email">Ваш Email: </label>
       <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
     </div>
     <div>
-      <label htmlFor="phone">Ваш телефон:</label>
+      <label htmlFor="phone">Ваш телефон: </label>
       <input type="tel" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
     </div>
     <div>
-      <label htmlFor="datetime">Выберите дату и время:</label>
+      <label htmlFor="datetime">Выберите дату и время: </label>
       <DatePicker
         selected={selectedDateTime}
         onChange={date => setSelectedDateTime(date)}
