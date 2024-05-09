@@ -1,94 +1,133 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function ToodeAdmin() {
-  const [Tooded, setToode] = useState([]);
+function App() {
+  const [tooted, setTooted] = useState([]);
   const [newToode, setNewToode] = useState({
     nimetus: '',
     hind: '',
-    kirjeldus: ''
+    kirjeldus: '',
+    kategooriaID: '' // изменяем тип на строку
   });
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     fetchTooted();
+    fetchCategories();
   }, []);
 
   const fetchTooted = async () => {
     try {
-      const response = await fetch('https://localhost:7057/Tooted');
+      const response = await fetch('https://localhost:7057/api/Tooted');
       const data = await response.json();
-      setToode(data);
+      setTooted(data);
     } catch (error) {
-      console.error('Error fetching poods:', error);
+      console.error('Error fetching tooted:', error);
+    }
+  };
+
+  const fetchCategories = async () => {
+    try {
+      const response = await fetch('https://localhost:7057/api/Tooted/categories');
+      const data = await response.json();
+      setCategories(data);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
     }
   };
 
   const addToode = async () => {
     try {
-      const { nimetus, hind, kirjeldus } = newToode;
-      
-      // Проверяем, является ли hind числом
-      if (isNaN(hind)) {
-        throw new Error('Price should be a number');
-      }
-      
-      // Преобразуем hind в число
-      const hindNumber = parseFloat(hind);
-  
-      const response = await fetch('https://localhost:7057/Tooted/add', {
+      // Конвертируем kategooriaID из строки в число перед отправкой на бэкенд
+      const toodeToAdd = {
+        ...newToode,
+        kategooriaID: parseInt(newToode.kategooriaID)
+      };
+    
+      await fetch('https://localhost:7057/api/Tooted/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          nimetus,
-          hind: hindNumber, // Используем числовое значение для hind
-          kirjeldus,
-        }),
+        body: JSON.stringify(toodeToAdd), // отправляем конвертированные данные
       });
-  
-      if (response.ok) {
-        // Fetch updated toode list after adding
-        fetchTooted();
-        setNewToode({ // Clear form after successful addition
-          nimetus: '',
-          hind: '',
-          kirjeldus: ''
-        });
-      } else {
-        throw new Error('Failed to add new product');
-      }
+      // Fetch updated toode list after adding
+      fetchTooted();
+      setNewToode({ // Clear form after successful addition
+        nimetus: '',
+        hind: '',
+        kirjeldus: '',
+        kategooriaID: ''
+      });
     } catch (error) {
       console.error('Error adding toode:', error);
     }
   };
   
   
+  const deleteToode = async (id) => {
+    try {
+      await fetch(`https://localhost:7057/api/Tooted/delete/${id}`, {
+        method: 'DELETE',
+      });
+      // Fetch updated toode list after deleting
+      fetchTooted();
+    } catch (error) {
+      console.error('Error deleting toode:', error);
+    }
+  };
+  const updateToode = async (id) => {
+    try {
+      await fetch(`https://localhost:7057/api/Tooted/update/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newToode),
+      });
+      // Fetch updated toode list after updating
+      fetchTooted();
+      setNewToode({
+        nimetus: '',
+        hind: '',
+        kirjeldus: '',
+        kategooriaID: ''
+      });
+    } catch (error) {
+      console.error('Error updating toode:', error);
+    }
+  };
+  
+
   return (
     <div>
-         <h2>Услуги</h2>
-      <div className="table-tooted">
-        <table id="Tooted">
-          <thead>
-            <tr>
-              <th>Название</th>
-              <th>Цена</th>
-              <th>Описание</th>
+      <h1>Toode List</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Nimetus</th>
+            <th>Hind</th>
+            <th>Kirjeldus</th>
+            <th>Kategooria</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tooted.map((toode) => (
+            <tr key={toode.toodeID}>
+              <td>{toode.nimetus}</td>
+              <td>{toode.hind}</td>
+              <td>{toode.kirjeldus}</td>
+              <td>{toode.kategooriaID}</td>
+              <td>
+                <button onClick={() => deleteToode(toode.toodeID)}>Delete</button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {Tooded.map((Toode) => (
-              <tr key={Toode.ToodeID}> {/* Unique key */}
-                <td>{Toode.nimetus}</td>
-                <td>{Toode.hind}</td>
-                <td>{Toode.kirjeldus}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
       <h2>Add New Toode</h2>
       <div>
-        <label>Toode Name:</label>
+        <label>Nimetus:</label>
         <input
           type="text"
           value={newToode.nimetus}
@@ -96,7 +135,7 @@ function ToodeAdmin() {
         />
       </div>
       <div>
-        <label>Toode hind:</label>
+        <label>Hind:</label>
         <input
           type="number"
           value={newToode.hind}
@@ -111,9 +150,23 @@ function ToodeAdmin() {
           onChange={(e) => setNewToode({ ...newToode, kirjeldus: e.target.value })}
         />
       </div>
+      <div>
+        <label>Kategooria:</label>
+        <select
+          value={newToode.kategooriaID}
+          onChange={(e) => setNewToode({ ...newToode, kategooriaID: e.target.value })}
+        >
+          <option value="">Select category</option>
+          {categories.map((category) => (
+            <option key={category.kategooriaID} value={category.kategooriaID}>
+              {category.nimetus}
+            </option>
+          ))}
+        </select>
+      </div>
       <button onClick={addToode}>Add Toode</button>
     </div>
   );
 }
 
-export default ToodeAdmin;
+export default App;

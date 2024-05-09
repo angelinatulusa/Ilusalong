@@ -1,14 +1,14 @@
 ﻿using Ilusalong.Data;
 using Ilusalong.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Ilusalong.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class TootedController : ControllerBase
     {
@@ -20,71 +20,74 @@ namespace Ilusalong.Controllers
         }
 
         [HttpGet]
-        public List<Tooted> GetToode()
+        public ActionResult<IEnumerable<Tooted>> GetTooted()
         {
-            var toode = _context.Toode.ToList();
-            return toode;
+            var tooted = _context.Toode.ToList();
+            return Ok(tooted);
+        }
+
+        [HttpGet("categories")]
+        public ActionResult<IEnumerable<Kategooriad>> GetCategories()
+        {
+            var categories = _context.Kategooria.ToList();
+            return Ok(categories);
         }
 
         [HttpPost("add")]
-        public ActionResult<Tooted> PostProduct([FromBody] Tooted tooted)
+        public ActionResult<IEnumerable<Tooted>> PostToode([FromBody] Tooted toode)
         {
-            try
-            {
-                _context.Toode.Add(tooted);
-                _context.SaveChanges();
-                return Ok(tooted);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Произошла ошибка при добавлении товара: {ex.Message}");
-            }
-        }
-
-        [HttpDelete("{id}")]
-        public ActionResult<List<Tooted>> DeleteToode(int id)
-        {
-            var cat = _context.Toode.Find(id);
-
-            if (cat == null)
-            {
-                return NotFound("Määratud ID-ga toodet pole olemas.");
-            }
-
-            _context.Toode.Remove(cat);
+            _context.Toode.Add(toode);
             _context.SaveChanges();
             return Ok(_context.Toode.ToList());
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<Tooted> GetToode(int id)
+        [HttpDelete("delete/{id}")]
+        public ActionResult<IEnumerable<Tooted>> DeleteToode(int id)
         {
-            var cat = _context.Toode.FirstOrDefault(t => t.ToodeID == id);
+            var toode = _context.Toode.Find(id);
 
-            if (cat == null)
-            {
-                return NotFound("Määratud ID-ga toodet pole olemas.");
-            }
-
-            return cat;
-        }
-
-        [HttpPut("{id}")]
-        public ActionResult<Tooted> PutToode(int id, [FromBody] Tooted updatedToode)
-        {
-            var cat = _context.Toode.Find(id);
-
-            if (cat == null)
+            if (toode == null)
             {
                 return NotFound();
             }
 
-            cat.Nimetus = updatedToode.Nimetus;
+            _context.Toode.Remove(toode);
+            _context.SaveChanges();
+            return Ok(_context.Toode.ToList());
+        }
 
-            _context.Toode.Update(cat);
+        [HttpGet("select/{id}")]
+        public ActionResult<Tooted> GetToode(int id)
+        {
+            var toode = _context.Toode.Find(id);
+
+            if (toode == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(toode);
+        }
+
+        [HttpPut("update/{id}")]
+        public ActionResult<IEnumerable<Tooted>> PutToode(int id, [FromBody] Tooted updatedToode)
+        {
+            var toode = _context.Toode.Find(id);
+
+            if (toode == null)
+            {
+                return NotFound();
+            }
+
+            toode.Nimetus = updatedToode.Nimetus;
+            toode.Hind = updatedToode.Hind;
+            toode.Kirjeldus = updatedToode.Kirjeldus;
+
+            _context.Toode.Update(toode);
             _context.SaveChanges();
 
-            return Ok(cat);
+            return Ok(_context.Toode.ToList());
         }
+
     }
 }

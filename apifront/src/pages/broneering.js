@@ -21,7 +21,7 @@ const Broneering = () => {
 
   const fetchTooted = async () => {
     try {
-      const response = await axios.get("https://localhost:7057/Tooted");
+      const response = await axios.get("https://localhost:7057/api/Tooted");
       setTooted(response.data);
     } catch (error) {
       console.error('Failed to fetch products:', error);
