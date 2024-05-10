@@ -25,9 +25,9 @@ function Tooted() {
         <table id="Tooted">
           <thead>
             <tr>
-              <th>Название</th>
-              <th>Цена</th>
-              <th>Описание</th>
+              <th>Pealkiri</th>
+              <th>Hind</th>
+              <th>Kirjeldus</th>
             </tr>
           </thead>
           <tbody>

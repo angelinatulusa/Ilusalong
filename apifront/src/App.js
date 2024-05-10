@@ -21,6 +21,22 @@ function App() {
           <Route path="/tootedAdmin" element={<ToodeAdmin/>} />
         </Routes>
       </div>
+      <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div className="adress">
+                    <h4>Me asume siin:</h4>
+                    <p>Aadress: Vesivärava 53c</p>
+                    <p>Ajakava: E-R: 9:00 - 19:00, L: 10:00 - 17:00</p>
+                </div>
+                <div className="info">
+                    <h4>Kontaktandmed:</h4>
+                    <p>Telefon: +372 XXX-XX-XX-XX-XX</p>
+                    <p>Email: info@example.com</p>
+                </div>
+            </div>
+        </div>
+      </footer>
     </>
   )
 }

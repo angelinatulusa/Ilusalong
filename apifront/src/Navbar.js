@@ -11,7 +11,7 @@ export default function Navbar() {
         <CustomLink to="/tooted">Teenused</CustomLink>
         <CustomLink to="/meistrid">Meistrid</CustomLink>
         <CustomLink to="/broneering">Broneering</CustomLink>
-        <CustomLink to="/signin">Sign in</CustomLink>
+        <CustomLink to="/signin">Logi sisse</CustomLink>
       </ul>
     </nav>
   );

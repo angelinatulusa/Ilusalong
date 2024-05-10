@@ -78,12 +78,12 @@ const Broneering = () => {
 
   return (
 <div>
-  <h2>Запись на процедуру</h2>
+  <h2>Lepi kokku protseduuri aeg</h2>
   <form onSubmit={handleSubmit} className="form-row">
     <div>
-      <label htmlFor="toode">Выберите товар: </label>
+      <label htmlFor="toode">Valige toode: </label>
       <select id="toode" onChange={(e) => setSelectedToode(e.target.value)}>
-        <option value="">Выберите товар</option>
+        <option value="">Valige toode</option>
         {Tooted.map((toode, index) => (
           <option key={index} value={toode.nimetus}>
             {toode.nimetus}
@@ -92,9 +92,9 @@ const Broneering = () => {
       </select>
     </div>
     <div>
-      <label htmlFor="master">Выберите мастера: </label>
+      <label htmlFor="master">Valige meistri: </label>
       <select id="master" onChange={(e) => setSelectedMaster(e.target.value)} value={selectedMaster} required>
-        <option value="">Выберите мастера</option>
+        <option value="">Valige meistri</option>
         {Meistrid.map((meister, index) => (
           <option key={index} value={meister.master_pernimi}>
             {meister.master_pernimi}
@@ -103,29 +103,29 @@ const Broneering = () => {
       </select>
     </div>
     <div>
-      <label htmlFor="name">Ваше имя: </label>
+      <label htmlFor="name">Teie nimi: </label>
       <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
     </div>
     <div>
-      <label htmlFor="email">Ваш Email: </label>
+      <label htmlFor="email">Teie email: </label>
       <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
     </div>
     <div>
-      <label htmlFor="phone">Ваш телефон: </label>
+      <label htmlFor="phone">Teie telefoninumber: </label>
       <input type="tel" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
     </div>
     <div>
-      <label htmlFor="datetime">Выберите дату и время: </label>
+      <label htmlFor="datetime">Valige kuupäev ja kellaaeg: </label>
       <DatePicker
         selected={selectedDateTime}
         onChange={date => setSelectedDateTime(date)}
         showTimeSelect
         timeFormat="HH:mm"
         dateFormat="yyyy-MM-dd HH:mm"
-        placeholderText="Выберите дату и время"
+        placeholderText="Valige kuupäev ja kellaaeg"
       />
     </div>
-    <button type="submit">Записаться</button>
+    <button type="submit">Registreeru</button>
   </form>
 </div>
 

@@ -5,7 +5,7 @@ import pilt3 from './img/pilt3.png';
 import React from 'react';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
-import Map from './map';
+import Map from './img/map.png';
 
 export default function Home() {
     const images = [
@@ -16,30 +16,28 @@ export default function Home() {
       <Slide>
         <div className="each-slide-effect">
           <div style={{ 'backgroundImage': `url(${images[0]})` }}>
-            <span>AnnetaNail - это не просто салон красоты, это место, где ваша красота оживает! 
-        Наши мастера - настоящие профессионалы своего дела, готовые подарить вам незабываемый опыт и идеальный результат.</span>
+            <span>AnnetaNail ei ole lihtsalt ilusalong, see on koht, kus teie ilu ellu äratatakse! Meie meistrid on tõelised professionaalid, kes on valmis pakkuma teile unustamatuid kogemusi ja täiuslikke tulemusi.</span>
           </div>
         </div>
         <div className="each-slide-effect">
           <div style={{ 'backgroundImage': `url(${images[1]})` }}>
-          <span>В нашем салоне вы найдете не только индивидуальный подход к каждому клиенту, но и самые передовые техники и продукты, 
-        чтобы достичь безупречных результатов.</span>
+          <span>Meie salongis leiad mitte ainult personaalse lähenemise igale kliendile, vaid ka kõige arenenumad tehnikad ja tooted, et saavutada veatuid tulemusi.</span>
           </div>
         </div>
         <div className="each-slide-effect">
           <div style={{ 'backgroundImage': `url(${images[2]})` }}>
-          <span>Доверьтесь нам, и мы сделаем ваш день ярче и красивее!</span>
+          <span>Usalda meid ja me teeme Sinu päeva helgemaks ja ilusamaks!</span>
           </div>
         </div>
         <div className="each-slide-effect">
           <div style={{ 'backgroundImage': `url(${images[3]})` }}>
-          <span>Добро пожаловать в наш уютный уголок красоты, где каждый посетитель - звезда своего собственного шоу!</span>
+          <span>Tere tulemast meie hubasesse ilunurka, kus iga külastaja on omaenda näituse staar!</span>
           </div>
         </div>
       </Slide>
     </div>
     <div className="text-container">
-        <strong>Наши услуги ༼ つ ◕_◕ ༽つ</strong>
+        <strong>Meie teenused ༼ つ ◕_◕ ༽つ</strong>
     </div>
     <div className="table-container">
       <table>
@@ -50,19 +48,16 @@ export default function Home() {
             <td className="td-button"><button className="image-button3"></button></td>
           </tr>
           <tr>
-            <td><span className="service-name">Маникюр и педикюр</span></td>
-            <td><span className="service-name">Парикмахерские услуги</span></td>
-            <td><span className="service-name">Брови и ресницы</span></td>
+            <td><span className="service-name">Maniküür ja pediküür</span></td>
+            <td><span className="service-name">Juuksuriteenused</span></td>
+            <td><span className="service-name">Kulmude ja ripsmete hooldus</span></td>
           </tr>
         </tbody>
       </table>
     </div>
     <div>
-      <h1>Местонахождение салона</h1>
-      <Map />
-    </div>
-    <div>
-      <h3>Наш адрес: Vesivärava 53c</h3>
+      <h1>Ilusalongi asukoht</h1>
+      <img src={Map} alt="Мы находимся здесь" />
     </div>
     </>
   }

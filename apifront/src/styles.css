@@ -45,6 +45,13 @@
     margin-top: 50px;
   }
 
+  h4 {
+    font-size: 20px;
+    text-align: center;
+    font-family: Roboto;
+    color: #370152;
+  }
+
   .site-title {
     font-size: 2rem;
     text-align: center;
@@ -103,7 +110,7 @@
     padding: 20px;
     font-size: 20px;
     text-align: center;
-    background-color: rgba(90, 180, 161, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
     color: #370152;
     font-size: 30px;
     font-family: Roboto;
@@ -155,102 +162,99 @@
     color: #370152;
   }
 
-  /* цсс для таблицы с услугами/товарами */
   .table-tooted {
-    margin-top: 20px; /* Отступ сверху */
-    font-weight: bold; /* Делаем текст жирным */
-    color: #370152; /* Изменяем цвет текста */
+    margin-top: 20px;
+    font-weight: bold;
+    color: #370152;
     font-size: 20px;
   }
   
   #Tooted {
-    width: 100%; /* Ширина таблицы на 100% */
-    border-collapse: collapse; /* Объединение границ ячеек */
+    width: 100%;
+    border-collapse: collapse;
   }
   
   #Tooted th,
   #Tooted td {
-    border: 1px solid #ccc; /* Граница ячеек таблицы */
-    padding: 10px; /* Отступ внутри ячеек */
+    border: 1px solid #ccc;
+    padding: 10px;
   }
   
   #Tooted th {
-    background-color: #d6f3dd; /* Светло-зеленый цвет фона заголовков */
-    color: #333; /* Цвет текста заголовков */
+    background-color: #d6f3dd;
+    color: #333;
   }
   
   #Tooted tbody tr:nth-child(even) {
-    background-color: #f6e2ff9a; /* Светло-фиолетовый цвет фона четных строк */
+    background-color: #f6e2ff9a;
   }
   
   #Tooted tbody tr:nth-child(odd) {
-    background-color: #f6e2ff9a; /* Светло-сиреневый цвет фона нечетных строк */
+    background-color: #f6e2ff9a;
   }
-  ц
+  
   #Tooted tbody tr:hover {
-    background-color: #d1b5dfbe; /* Цвет фона при наведении на строку */
-  }
+    background-color: #d1b5dfbe;
+  }  
 
   .reg-button {
-    background-color: #588b64; /* Зеленый цвет фона */
-    border: none; /* Убираем границу */
+    background-color: #588b64; 
+    border: none; 
     font-weight: bold;
-    color: white; /* Белый цвет текста */
-    padding: 15px 30px; /* Отступы внутри кнопки */
-    text-align: center; /* Выравниваем текст по центру */
-    text-decoration: none; /* Убираем подчеркивание */
-    display: inline-block; /* Устанавливаем блочный элемент */
-    font-size: 16px; /* Размер шрифта */
-    cursor: pointer; /* Устанавливаем указатель при наведении */
-    border-radius: 15px; /* Закругляем углы */
-    transition-duration: 0.4s; /* Длительность анимации при наведении */
+    color: white; 
+    padding: 15px 30px; 
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block; 
+    font-size: 16px; 
+    cursor: pointer; 
+    border-radius: 15px; 
+    transition-duration: 0.4s; 
   }
   
   .reg-button:hover {
-    background-color: #7cb389; /* Зеленый цвет фона при наведении */
-    color: white; /* Белый цвет текста при наведении */
+    background-color: #7cb389; 
+    color: white; 
   }
-  
-  /* цсс для таблицы с мастерами */
 
   .table-meistrid {
-    margin-top: 20px; /* Отступ сверху */
-    font-weight: bold; /* Делаем текст жирным */
-    color: #370152; /* Изменяем цвет текста */
+    margin-top: 20px; 
+    font-weight: bold; 
+    color: #370152; 
     font-size: 20px;
   }
   
   #Meistrid {
-    width: 100%; /* Ширина таблицы на 100% */
-    border-collapse: collapse; /* Объединение границ ячеек */
+    width: 100%; 
+    border-collapse: collapse; 
   }
   
   #Meistrid th,
   #Meistrid td {
-    border: 1px solid #ccc; /* Граница ячеек таблицы */
-    padding: 10px; /* Отступ внутри ячеек */
+    border: 1px solid #ccc; 
+    padding: 10px; 
   }
   
   #Meistrid th {
-    background-color: #d6f3dd; /* Светло-зеленый цвет фона заголовков */
-    color: #333; /* Цвет текста заголовков */
+    background-color: #d6f3dd; 
+    color: #333; 
   }
   
   #Meistrid tbody tr:nth-child(even) {
-    background-color: #f6e2ff9a; /* Светло-фиолетовый цвет фона четных строк */
+    background-color: #f6e2ff9a; 
   }
   
   #Meistrid tbody tr:nth-child(odd) {
-    background-color: #f6e2ff9a; /* Светло-сиреневый цвет фона нечетных строк */
+    background-color: #f6e2ff9a; 
   }
   
   #Meistrid tbody tr:hover {
-    background-color: #d1b5dfbe; /* Цвет фона при наведении на строку */
+    background-color: #d1b5dfbe; 
   }
 
   #map {
-    width: 400px; /* Ширина карты на всю ширину родительского элемента */
-    height: 300px; /* Высота карты, можете настроить по вашему желанию */
+    width: 400px; 
+    height: 300px; 
   }
   form {
     display: flex;
@@ -259,9 +263,8 @@
     margin: 0 auto;
   }
   
-  /* Стили для поля ввода */
   input, select {
-    width: calc(100% - 22px); /* Вычисляем ширину так, чтобы все элементы были одинаковой ширины */
+    width: calc(100% - 22px); 
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -270,7 +273,6 @@
     font-size: 16px;
   }
   
-  /* Стили для кнопок */
   button {
     width: calc(100% - 22px);
     padding: 7px 10px;
@@ -281,8 +283,8 @@
     color: whitesmoke;
     font-size: 16px;
     cursor: pointer;
-    margin: 10px auto 0; /* Выравнивание по центру по вертикали и автоматическое выравнивание по горизонтали */
-    display: block; /* Чтобы кнопка занимала всю доступную ширину */
+    margin: 10px auto 0; 
+    display: block; 
     font-weight: bold;
   }
   
@@ -290,7 +292,6 @@
     background-color: #447e61;
   }
   
-  /* Стили для ошибки */
   p {
     color: red;
     margin-bottom: 10px;
@@ -299,7 +300,6 @@
     font-size: 120%;
   }
   
-  /* Стили для заголовка */
   h2 {
     text-align: center;
   }
@@ -309,7 +309,34 @@
     margin-bottom: 5px;
   }
   
-  /* Стили для опций внутри выпадающего списка */
   option {
     font-size: 16px;
+  }
+
+  .footer {
+    padding: 10px;
+  }
+
+  .footer p {
+    color: #4d2363;
+    white-space: nowrap;
+    display: inline; 
+    margin-right: 20px;
+  }
+
+  .adress{
+      display: inline-block; 
+      vertical-align: top;
+      margin-right: 200px; 
+  }
+
+  .info {
+    display: inline-block; 
+    vertical-align: top; 
+    margin-left: 100px; 
+  }
+
+  .lisateenusform {
+    max-width: 500px; 
+    margin: 0 auto; 
   }

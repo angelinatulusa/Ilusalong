@@ -29,11 +29,10 @@ const Login = () => {
 
   return (
     <div>
-      <h2>Login</h2>
       {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="username">Kasutajanimi:</label>
           <input
             type="text"
             id="username"
@@ -43,7 +42,7 @@ const Login = () => {
           />
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">Parool:</label>
           <input
             type="password"
             id="password"
@@ -52,7 +51,7 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Logi sisse</button>
       </form>
     </div>
   );

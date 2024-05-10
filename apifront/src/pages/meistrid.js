@@ -19,15 +19,15 @@ const Meistrid = () => {
 
   return (
     <div className="table-meistrid">
-      <h2>Мастера</h2>
+      <h2>Meistrid</h2>
       <table id="Meistrid">
         <thead>
           <tr>
-            <th>Имя</th>
-            <th>Фамилия</th>
+            <th>Nimi</th>
+            <th>Perekonnanimi</th>
             <th>Email</th>
-            <th>Телефон</th>
-            <th>Специальность</th>
+            <th>Telefon</th>
+            <th>Eriala</th>
           </tr>
         </thead>
         <tbody>
