@@ -25,20 +25,33 @@ const Meistrid = () => {
   return (
     <div>
       <h2>Meistrid</h2>
-      <div className="master-buttons">
-        {masters.map((master, index) => (
-          <button key={index} onClick={() => handleMasterClick(master)}>
-            {master.master_nimi} {master.master_pernimi}
-          </button>
-        ))}
-      </div>
+      <table className="table-meistrid" id="Meistrid">
+        <thead>
+          <tr>
+            <th>Nimi</th>
+            <th>E-post</th>
+            <th>Telefon</th>
+            <th>Eriala</th>
+          </tr>
+        </thead>
+        <tbody>
+          {masters.map((master, index) => (
+            <tr key={index} onClick={() => handleMasterClick(master)}>
+              <td>{master.master_nimi} {master.master_pernimi}</td>
+              <td>{master.master_email}</td>
+              <td>{master.master_telefon}</td>
+              <td>{master.master_eriala}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
       {selectedMaster && (
         <div className="selected-master">
-          <h2>Selected Master</h2>
-          <p><strong>Name:</strong> {selectedMaster.master_nimi} {selectedMaster.master_pernimi}</p>
-          <p><strong>Email:</strong> {selectedMaster.master_email}</p>
-          <p><strong>Phone:</strong> {selectedMaster.master_telefon}</p>
-          <p><strong>Specialty:</strong> {selectedMaster.master_eriala}</p>
+          <h2>Valitud Meister</h2>
+          <p><strong>Nimi:</strong> {selectedMaster.master_nimi} {selectedMaster.master_pernimi}</p>
+          <p><strong>E-post:</strong> {selectedMaster.master_email}</p>
+          <p><strong>Telefon:</strong> {selectedMaster.master_telefon}</p>
+          <p><strong>Eriala:</strong> {selectedMaster.master_eriala}</p>
         </div>
       )}
     </div>
