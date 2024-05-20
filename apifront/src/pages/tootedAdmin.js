@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 
 function App() {
   const [tooted, setTooted] = useState([]);
@@ -75,27 +76,6 @@ function App() {
       console.error('Error deleting toode:', error);
     }
   };
-  const updateToode = async (id) => {
-    try {
-      await fetch(`https://localhost:7057/api/Tooted/update/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newToode),
-      });
-      // Fetch updated toode list after updating
-      fetchTooted();
-      setNewToode({
-        nimetus: '',
-        hind: '',
-        kirjeldus: '',
-        kategooriaID: ''
-      });
-    } catch (error) {
-      console.error('Error updating toode:', error);
-    }
-  };
   
 
   return (
@@ -168,6 +148,7 @@ function App() {
         </div>
         <button onClick={addToode}>Lisa teenus</button>
       </div>
+      <Link to="/broneeringAdmin"> BroneeringAdmin</Link>
     </div>
   );
 }

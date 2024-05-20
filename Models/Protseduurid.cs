@@ -7,7 +7,7 @@ namespace Ilusalong.Models
     {
         [Key] public int ProtseduurID { get; set; }
         public string nimetus { get; set; }
-        public DateTime Aeg { get; set; }
+        public string Aeg { get; set; }
         public string kas_nimi { get; set; }
         public string kas_email { get; set; }
         public string kas_telefon { get; set; }

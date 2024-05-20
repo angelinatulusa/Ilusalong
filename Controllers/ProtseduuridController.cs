@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Ilusalong.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ProtseduuridController : ControllerBase
     {
@@ -25,28 +25,27 @@ namespace Ilusalong.Controllers
             return procedures;
         }
 
-        [HttpPost] // Добавление новой процедуры
-        public ActionResult<Protseduurid> PostProtseduurid(Protseduurid procedure)
+        [HttpPost("add")]
+        public ActionResult<IEnumerable<Protseduurid>> PostProtseduurid([FromBody] Protseduurid procedure)
         {
             _context.Protseduurid.Add(procedure);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetProtseduurid), new { id = procedure.ProtseduurID }, procedure);
+            return Ok(_context.Protseduurid.ToList());
         }
 
-        [HttpDelete("{id}")] // Удаление процедуры по ID
+        [HttpDelete("delete/{id}")]
         public ActionResult<IEnumerable<Protseduurid>> DeleteProtseduurid(int id)
         {
-            var procedure = _context.Protseduurid.Find(id);
+            var protseduurid = _context.Protseduurid.Find(id);
 
-            if (procedure == null)
+            if (protseduurid == null)
             {
                 return NotFound();
             }
 
-            _context.Protseduurid.Remove(procedure);
+            _context.Protseduurid.Remove(protseduurid);
             _context.SaveChanges();
-            var procedures = _context.Protseduurid.ToList();
-            return procedures;
+            return Ok(_context.Protseduurid.ToList());
         }
 
         [HttpGet("{id}")] // Получение процедуры по ID

@@ -19,7 +19,7 @@ function Tooted() {
 
   return (
     <div>
-      <h2>Услуги</h2>
+      <h2>Teenused</h2>
       {isLoggedIn && <AddToodeForm onToodeAdded={handleToodeAdded} />}
       <div className="table-tooted">
         <table id="Tooted">

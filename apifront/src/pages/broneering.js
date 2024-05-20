@@ -1,135 +1,146 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import moment from 'moment'; // Импортируем moment.js для работы с датами и временем
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
-const Broneering = () => {
-  const [Tooted, setTooted] = useState([]);
-  const [Meistrid, setMeistrid] = useState([]);
-  const [selectedToode, setSelectedToode] = useState('');
-  const [selectedMaster, setSelectedMaster] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [selectedDateTime, setSelectedDateTime] = useState(new Date());
+function App() {
+  const [protseduurid, setProtseduurid] = useState([]);
+  const [newProtseduur, setNewProtseduur] = useState({
+    nimetus: '',
+    kas_nimi: '',
+    kas_email: '',
+    kas_telefon: '',
+    master_nimi: '',
+    master_pernimi: '',
+    Aeg: ''
+  });
+  const [masters, setMasters] = useState([]);
+  const [tooted, setTooted] = useState([]);
 
   useEffect(() => {
-    fetchTooted();
+    fetchProtseduurid();
     fetchMeistrid();
+    fetchTooted();
   }, []);
 
-  const fetchTooted = async () => {
+  const fetchProtseduurid = async () => {
     try {
-      const response = await axios.get("https://localhost:7057/api/Tooted");
-      setTooted(response.data);
+      const response = await fetch('https://localhost:7057/api/Protseduurid');
+      const data = await response.json();
+      setProtseduurid(data);
     } catch (error) {
-      console.error('Failed to fetch products:', error);
+      console.error('Error fetching protseduurid:', error);
     }
   };
 
   const fetchMeistrid = async () => {
     try {
-      const response = await axios.get("https://localhost:7057/api/Meistrid");
-      setMeistrid(response.data);
+      const response = await fetch('https://localhost:7057/api/Meistrid');
+      const data = await response.json();
+      setMasters(data);
     } catch (error) {
-      console.error('Failed to fetch masters:', error);
+      console.error('Error fetching masters:', error);
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    // Получаем значения из полей формы
-    const nimetus = selectedToode.toString();
-    const Aeg = moment(selectedDateTime).format("YYYY-MM-DD HH:mm");// Преобразуем время в нужный формат
-    const kas_nimi = name.toString();
-    const kas_email = email.toString();
-    const kas_telefon = phone.toString();
-    const master_nimi = null;
-    const master_pernimi = selectedMaster.toString();
-  
-    // Проверяем обязательные поля
-    if (!nimetus || !Aeg || !kas_nimi || !kas_email || !kas_telefon || !master_pernimi) {
-      console.error("Все поля должны быть заполнены.");
-      return;
-    }
-  
-    // Создаем новый объект для отправки на сервер
-    const newProtseduur = {
-      nimetus,
-      Aeg,
-      kas_nimi,
-      kas_email,
-      kas_telefon,
-      master_nimi,
-      master_pernimi
-    };
-  
+  const fetchTooted = async () => {
     try {
-      // Отправляем данные на сервер
-      const response = await axios.post('https://localhost:7057/Protseduurid', newProtseduur);
-      console.log('Успешное бронирование:', response.data);
-      // Добавьте здесь код для обработки успешного бронирования
+      const response = await fetch('https://localhost:7057/api/Tooted');
+      const data = await response.json();
+      setTooted(data);
     } catch (error) {
-      console.error('Ошибка при бронировании:', error);
+      console.error('Error fetching tooted:', error);
     }
   };
 
+  const addProtseduur = async () => {
+    try {
+      await fetch('https://localhost:7057/api/Protseduurid/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newProtseduur),
+      });
+      // Fetch updated protseduurid list after adding
+      fetchProtseduurid();
+      setNewProtseduur({
+        nimetus: '',
+        kas_nimi: '',
+        kas_email: '',
+        kas_telefon: '',
+        master_nimi: '',
+        Aeg: '',
+      });
+    } catch (error) {
+      console.error('Error adding protseduur:', error);
+    }
+  };
   return (
-<div>
-  <h2>Lepi kokku protseduuri aeg</h2>
-  <form onSubmit={handleSubmit} className="form-row">
-    <div>
-      <label htmlFor="toode">Valige toode: </label>
-      <select id="toode" onChange={(e) => setSelectedToode(e.target.value)}>
-        <option value="">Valige toode</option>
-        {Tooted.map((toode, index) => (
-          <option key={index} value={toode.nimetus}>
-            {toode.nimetus}
-          </option>
-        ))}
-      </select>
-    </div>
-    <div>
-      <label htmlFor="master">Valige meistri: </label>
-      <select id="master" onChange={(e) => setSelectedMaster(e.target.value)} value={selectedMaster} required>
-        <option value="">Valige meistri</option>
-        {Meistrid.map((meister, index) => (
-          <option key={index} value={meister.master_pernimi}>
-            {meister.master_pernimi}
-          </option>
-        ))}
-      </select>
-    </div>
-    <div>
-      <label htmlFor="name">Teie nimi: </label>
-      <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
-    </div>
-    <div>
-      <label htmlFor="email">Teie email: </label>
-      <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-    </div>
-    <div>
-      <label htmlFor="phone">Teie telefoninumber: </label>
-      <input type="tel" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
-    </div>
-    <div>
-      <label htmlFor="datetime">Valige kuupäev ja kellaaeg: </label>
-      <DatePicker
-        selected={selectedDateTime}
-        onChange={date => setSelectedDateTime(date)}
-        showTimeSelect
-        timeFormat="HH:mm"
-        dateFormat="yyyy-MM-dd HH:mm"
-        placeholderText="Valige kuupäev ja kellaaeg"
-      />
-    </div>
-    <button type="submit">Registreeru</button>
-  </form>
-</div>
+    <div> 
+      <div className='lisa-protseduur-form'>
+        <div>
+          <label>Nimetus:</label>
+          <select
+            value={newProtseduur.nimetus}
+            onChange={(e) => setNewProtseduur({ ...newProtseduur, nimetus: e.target.value })}
+          >
+            <option value="">Vali nimetus</option>
+            {tooted.map((toode) => (
+              <option key={toode.toodeID} value={toode.nimetus}>
+                {toode.nimetus}
+              </option>
+            ))}
+          </select>
+        </div>
 
+        <div>
+          <label>Kliendi nimi:</label>
+          <input
+            type="text"
+            value={newProtseduur.kas_nimi}
+            onChange={(e) => setNewProtseduur({ ...newProtseduur, kas_nimi: e.target.value })}
+          />
+        </div>
+        <div>
+          <label>Kliendi email:</label>
+          <input
+            type="text"
+            value={newProtseduur.kas_email}
+            onChange={(e) => setNewProtseduur({ ...newProtseduur, kas_email: e.target.value })}
+          />
+        </div>
+        <div>
+          <label>Kliendi telefon:</label>
+          <input
+            type="text"
+            value={newProtseduur.kas_telefon}
+            onChange={(e) => setNewProtseduur({ ...newProtseduur, kas_telefon: e.target.value })}
+          />
+        </div>
+        <div>
+          <label>Meistri nimi:</label>
+          <select
+            value={newProtseduur.master_nimi}
+            onChange={(e) => setNewProtseduur({ ...newProtseduur, master_nimi: e.target.value })}
+          >
+            <option value="">Vali meistri nimi</option>
+            {masters.map((master) => (
+              <option key={master.id} value={master.master_nimi}>
+                {master.master_nimi}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label>Aeg:</label>
+          <input
+            type="datetime-local"
+            value={newProtseduur.Aeg}
+            onChange={(e) => setNewProtseduur({ ...newProtseduur, Aeg: e.target.value })}
+          />
+        </div>
+        <button onClick={addProtseduur}>Lisa protseduur</button>
+      </div>
+    </div>
   );
-};
+}
 
-export default Broneering;
+export default App;

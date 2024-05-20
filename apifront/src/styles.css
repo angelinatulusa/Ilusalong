@@ -340,3 +340,74 @@
     max-width: 500px; 
     margin: 0 auto; 
   }
+
+
+  /* Стили для таблицы */
+.table-protseduurid {
+  margin-bottom: 20px;
+}
+
+.table-protseduurid table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-protseduurid th, .table-protseduurid td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table-protseduurid th {
+  background-color: #f2f2f2;
+}
+
+/* Стили для формы добавления новой процедуры */
+.lisa-protseduur-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.lisa-protseduur-form div {
+  margin-bottom: 10px;
+}
+
+.lisa-protseduur-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.lisa-protseduur-form input[type="text"],
+.lisa-protseduur-form select,
+.lisa-protseduur-form input[type="datetime-local"] {
+  width: calc(100% - 10px);
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.lisa-protseduur-form button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.lisa-protseduur-form button:hover {
+  background-color: #45a049;
+}
+.toode-admin-link {
+  color: #ffffff; /* Text color */
+  background-color: #023528; /* Background color */
+  padding: 10px 20px; /* Padding */
+  border-radius: 5px; /* Rounded corners */
+  text-decoration: none; /* Remove default underline */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect */
+.toode-admin-link:hover {
+  background-color: #023528; /* Darker background color on hover */
+}
